@@ -2,9 +2,9 @@ const VerifyToken = (req, res) => {
     try{
         let accessTocken = "WSP_9fK2xQ7LmN4vT8aZ1pR6uD3yH5cJ0sE"
         let token = req.query["hub.verify_token"];
-        let challenge = req.body["hub.challenge"];
+        let challenge = req.query["hub.challenge"];
 
-        if(challenge !=null && token !=null && accessTocken == token){
+        if(challenge !=null && token !=null && token == accessTocken){
             res.send(challenge);
         }else{
             res.status(400).send("Token no verificado");
